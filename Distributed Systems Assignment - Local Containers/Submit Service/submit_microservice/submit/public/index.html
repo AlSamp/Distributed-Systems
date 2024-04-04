@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Submit Jokes</title>
+  </head>
+  <body>
+    <div>
+      <h1>Submit Your Own Jokes</h1>
+      <br />
+      <label for="jokeType">What type of joke would you like to submit</label>
+      <select id="jokeType" onchange="showNewJokeTypeInput()">
+        <option value="new">New?</option>
+      </select>
+      <br />
+      <br />
+      <div id="newJokeTypeInput" style="display: none">
+        <label for="newJokeType">Enter new type of joke:</label>
+        <input type="text" id="newJokeType" />
+      </div>
+      <br />
+      <br />
+      <label>Setup : </label>
+      <span id="setupCount">255 characters remaining</span>
+      <br />
+      <textarea
+        id="setup"
+        maxlength="255"
+        oninput="characterCount('setup','setupCount')"
+      ></textarea>
+      <br />
+      <br />
+      <label>Punchline : </label>
+      <span id="punchlineCount">255 characters remaining</span>
+      <br />
+      <textarea
+        id="punchline"
+        maxlength="255"
+        oninput="characterCount('punchline','punchlineCount')"
+      ></textarea>
+      <br />
+      <br />
+      <br />
+
+      <button id="jokeButton" onclick="SubmitJoke()">Submit Joke</button>
+      <h2 id="joke"></h2>
+      <h2 id="punchline"></h2>
+      <h2 id="tableContainer"></h2>
+    </div>
+  </body>
+</html>

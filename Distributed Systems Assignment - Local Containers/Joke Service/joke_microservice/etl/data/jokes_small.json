@@ -1,0 +1,33 @@
+
+[
+    {
+      "id": 1,
+      "type": "general",
+      "setup": "What did the fish say when it hit the wall?",
+      "punchline": "Dam."
+    },
+    {
+      "id": 2,
+      "type": "general",
+      "setup": "How do you make a tissue dance?",
+      "punchline": "You put a little boogie on it."
+    },
+    {
+      "id": 3,
+      "type": "general",
+      "setup": "What's Forrest Gump's password?",
+      "punchline": "1Forrest1"
+    },
+    {
+      "id": 4,
+      "type": "general",
+      "setup": "What do you call a belt made out of watches?",
+      "punchline": "A waist of time."
+    },
+    {
+      "id": 5,
+      "type": "general",
+      "setup": "Why can't bicycles stand on their own?",
+      "punchline": "They are two tired"
+    }
+]

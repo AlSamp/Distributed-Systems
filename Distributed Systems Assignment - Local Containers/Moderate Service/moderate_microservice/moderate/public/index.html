@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Moderate Jokes</title>
+  </head>
+  <body>
+    <div>
+      <h1>Moderate Jokes</h1>
+      <br />
+      <h2 id="submittedJokeType">Joke submited as type : {placeholder}</h2>
+      <label for="overrideJokeType">Override submitted joke type : </label>
+      <select id="overrideJokeType" onchange="showSetJokeType()">
+        <option value="new">No</option>
+        <option value="new">Yes</option>
+      </select>
+      <br />
+      <br />
+      <label for="jokeType">Set joke type as : </label>
+      <select id="jokeType" onchange="showNewJokeTypeInput()">
+        <option id="selectedJokeType" value="new">New?</option>
+      </select>
+      <br />
+      <br />
+      <div id="newJokeTypeInput" style="display: none">
+        <label for="newJokeType">Enter new type of joke:</label>
+        <input type="text" id="newJokeType" />
+      </div>
+      <br />
+      <br />
+      <label>Setup : </label>
+      <span id="setupCount">255 characters remaining</span>
+      <br />
+      <textarea
+        id="setup"
+        maxlength="255"
+        oninput="characterCount('setup','setupCount')"
+      ></textarea>
+      <br />
+      <br />
+      <label>Punchline : </label>
+      <span id="punchlineCount">255 characters remaining</span>
+      <br />
+      <textarea
+        id="punchline"
+        maxlength="255"
+        oninput="characterCount('punchline','punchlineCount')"
+      ></textarea>
+      <br />
+      <br />
+      <br />
+
+      <button id="jokeButton" onclick="DeclineJoke()">Decline Joke</button>
+      <button id="jokeButton" onclick="ApproveJoke()">Approve Joke</button>
+      <h2 id="joke"></h2>
+      <h2 id="punchline"></h2>
+      <h2 id="tableContainer"></h2>
+    </div>
+  </body>
+</html>

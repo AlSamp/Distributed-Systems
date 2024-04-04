@@ -1,0 +1,12 @@
+_format_version: "3.0"
+
+services:
+  - name: submit
+    url: http://host.docker.internal:4200   # Target is a local container
+   # url: http://host.docker.internal:3000   # When target is not a container but, say vscode
+   # url: http://10.0.0.9:4000
+    routes:
+      - name: submit
+        paths:
+         - /submit/  # Path needs to be yin with something after it. e.g. yin/ is '/' path, /yin/want-yang etc
+    

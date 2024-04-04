@@ -1,0 +1,58 @@
+services:
+  mysql-svr: # Docker hub-based managed mysql image
+    image: mysql # No tag so latest will be pulled
+    container_name: mysql
+    restart: unless-stopped # If it crashes, restart it unless it was me that stopped it
+    env_file:
+      - .env # All config we need for this container is in here
+    healthcheck:
+      test: curl --fail http://localhost:${MYSQL_PORT} || exit 1 # Keep trying to connect to my sql. Build etl on success
+      interval: 10s # Wait
+      timeout: 10s # Try for this long
+      retries: 3 # Try this many times before giving up
+    volumes:
+      - mysql-db:/var/lib/mysql
+    ports:
+      - ${MYSQL_CONTAINER_PORT}:${MYSQL_PORT} # Mapped to 4002 to enable workbench to connect if on host with local mysql running on 4002
+
+  joke:
+    image: alsampds.azurecr.io/joke
+    build:
+      context: ./joke
+    container_name: joke-cont
+    restart: always
+    env_file:
+      - .env
+    environment: # Those not in .env
+      - MYSQL_CONTAINER_SERVICE=mysql-svr # mysql container accessed from this container
+      - MYSQL_CONTAINER_USER=${MYSQL_USER}
+      - MYSQL_CONTAINER_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_CONTAINER_DATABASE=${MYSQL_DATABASE}
+    ports:
+      - ${JOKE_CONTAINER_PORT}:${JOKE_PORT}
+    depends_on:
+      mysql-svr:
+        condition: service_healthy
+
+  etl:
+    image: alsampds.azurecr.io/etl
+    build:
+      context: ./etl
+    container_name: etl-cont
+    restart: always
+    env_file:
+      - .env
+    environment: # Those not in .env
+      - MYSQL_CONTAINER_SERVICE=mysql-svr # mysql container accessed from this container
+      - MYSQL_CONTAINER_USER=${MYSQL_USER}
+      - MYSQL_CONTAINER_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_CONTAINER_DATABASE=${MYSQL_DATABASE}
+
+    ports:
+      - ${ETL_CONTAINER_PORT}:${ETL_PORT}
+    depends_on:
+      mysql-svr:
+        condition: service_healthy
+
+volumes:
+  mysql-db:

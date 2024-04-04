@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jokes</title>
+  </head>
+  <body>
+    <div>
+      <h1>Joke Central</h1>
+      <br />
+      <label for="jokeType">Choose a type of joke:</label>
+      <select id="jokeType">
+        <option value="any">Any</option>
+      </select>
+      <br />
+      <br />
+      <label>Number of jokes: <input type="number" id="numJokes" value="1" min="1"/></label>
+      <br />
+      <br />
+      <button id="jokeButton" , onclick="GetJokes()">Get Joke</button>
+      <h2 id="joke"></h2>
+      <h2 id="punchline"></h2>
+      <h2 id="tableContainer">
+      <!-- <button, onclick="TestJokes()">Test Joke</button> -->
+    </div>
+  </body>
+</html>

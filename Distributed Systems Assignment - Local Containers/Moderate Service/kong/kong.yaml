@@ -1,0 +1,11 @@
+_format_version: "3.0"
+
+services:
+  - name: moderate
+    url: http://host.docker.internal:4100 # Target is a local container
+   # url: http://host.docker.internal:3001  # When target is not a container
+   # url: http://10.0.0.9:4001
+    routes:
+      - name: mod
+        paths:
+         - /mod/
